@@ -17,8 +17,7 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src",
-    "node_modules/@types/p5/global.d.ts"
+    "src"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
