@@ -85,3 +85,4 @@ const Game: React.FC<ComponentProps> = (props: ComponentProps) => {
   );
 };
 
+export default Game;
