@@ -3,6 +3,8 @@ import p5Types from "p5";
 import p5 from "p5";
 import P5 from "./ReactP5";
 import Flock from "./Boids/Flock";
+import 'p5/lib/addons/p5.sound';
+// import 'p5/lib/addons/p5.dom';
 
 interface ComponentProps {
   //Your component props
@@ -18,9 +20,9 @@ const Game: React.FC<ComponentProps> = (props: ComponentProps) => {
   let octahedron: p5.Geometry;
   let octahedron2: p5.Geometry;
   let flock: Flock;
-
+  
   function preload(p: p5Types) {
-    // song = loadSound("/stressul.mp3");
+    song = p.loadSound("/stressul.mp3");
     octahedron = p.loadModel("/bubbly.obj");
     octahedron2 = p.loadModel("/spiky.obj");
   }
@@ -41,6 +43,7 @@ const Game: React.FC<ComponentProps> = (props: ComponentProps) => {
     p.clear(0, 0, 0, 0);
     p.background(10);
     flock.run();
+    p.song.loof();
 
     if (p.mouseY < 200){
       p.translate(p.mouseX-1000, p.mouseY-200, 0, 320);
