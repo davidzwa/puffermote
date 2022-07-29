@@ -14,15 +14,15 @@ interface ComponentProps {
 let x = 0;
 const y = 0;
 let r = 0;
-let song;
 
 const Game: React.FC<ComponentProps> = (props: ComponentProps) => {
   let octahedron: p5.Geometry;
   let octahedron2: p5.Geometry;
   let flock: Flock;
+  let song: p5Types.SoundFile;
   
   function preload(p: p5Types) {
-    song = p.loadSound("/stressul.mp3");
+    song = p.loadSound("/stressful.mp3");
     octahedron = p.loadModel("/bubbly.obj");
     octahedron2 = p.loadModel("/spiky.obj");
   }
@@ -32,6 +32,9 @@ const Game: React.FC<ComponentProps> = (props: ComponentProps) => {
     p.createCanvas(p.windowWidth, 500, p.WEBGL).parent(canvasParentRef);
     flock = new Flock(p);
     flock.setup();
+    song.loop();
+    // @ts-ignore
+    p.getAudioContext().resume();
 
     p.mouseDragged = () => {
       // flock.addBoid(p.mouseX, p.mouseY);
@@ -43,9 +46,9 @@ const Game: React.FC<ComponentProps> = (props: ComponentProps) => {
     p.clear(0, 0, 0, 0);
     p.background(10);
     flock.run();
-    p.song.loof();
 
     if (p.mouseY < 200){
+      song.play();
       p.translate(p.mouseX-1000, p.mouseY-200, 0, 320);
       p.rotate(r / 100.0, [1, 1, 0]);
       p.scale(1);
