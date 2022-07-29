@@ -9,31 +9,31 @@ interface ComponentProps {
   scrollSize: number;
 }
 
-let x = 50;
-const y = 50;
+let x = 0;
+const y = 0;
 let r = 0;
+let song;
 
 const Game: React.FC<ComponentProps> = (props: ComponentProps) => {
   let octahedron: p5.Geometry;
+  let octahedron2: p5.Geometry;
   let flock: Flock;
 
   function preload(p: p5Types) {
-    octahedron = p.loadModel("/puffer.obj");
+    // song = loadSound("/stressul.mp3");
+    octahedron = p.loadModel("/bubbly.obj");
+    octahedron2 = p.loadModel("/spiky.obj");
   }
-
-  const spawnCookie = (p: p5Types) => {
-    p.ellipse(x, y, 70, 70);
-  };
 
   const setup = (p: p5Types, canvasParentRef: Element) => {
     p.createCanvas(p.windowWidth, 400, p.WEBGL).parent(canvasParentRef);
-    p.describe("Fish and food");
+    p.createCanvas(p.windowWidth, 500, p.WEBGL).parent(canvasParentRef);
     flock = new Flock(p);
-
     flock.setup();
+
     p.mouseDragged = () => {
       // flock.addBoid(p.mouseX, p.mouseY);
-      spawnCookie(p);
+      octahedron2;
     };
   };
 
@@ -42,24 +42,41 @@ const Game: React.FC<ComponentProps> = (props: ComponentProps) => {
     p.background(10);
     flock.run();
 
-    // p.ellipse(x, y, 70, 70);
-    // p.translate(0, 0, 320);
-    // p.rotate(r / 100.0, [1, 1, 0]);
-    // p.scale(3);
-    // p.normalMaterial();
-    // p.model(octahedron);
-    // p.rotate(r / 100.0, [1, 1, 0]);
-    // p.model(octahedron);
-    // p.rotate(r / 100.0, [1, 1, 0]);
-    // p.model(octahedron);
-    // p.rotate(r / 100.0, [1, 1, 0]);
-    // p.model(octahedron);
-    // p.translate(0, 1, 10);
-    // p.rotate(r / 100.0, [1, 1, 0]);
-    // p.model(octahedron);
-    // x++;
-    // r++;
-
+    if (p.mouseY < 200){
+      p.translate(p.mouseX-1000, p.mouseY-200, 0, 320);
+      p.rotate(r / 100.0, [1, 1, 0]);
+      p.scale(1);
+      p.normalMaterial();
+      p.model(octahedron);
+      p.rotate(r / 100.0, [1, 1, 0]);
+      p.model(octahedron);
+      p.rotate(r / 100.0, [1, 1, 0]);
+      p.model(octahedron);
+      p.rotate(r / 100.0, [1, 1, 0]);
+      p.model(octahedron);
+      p.translate(0, 1, 10);
+      p.rotate(r / 100.0, [1, 1, 0]);
+    } 
+    
+    else if (p.mouseY >= 200 && p.mouseY < 500){
+      p.translate(p.mouseX-1000, p.mouseY-200, 0, 320);
+      p.rotate(r / 100.0, [1, 1, 0]);
+      p.scale(1);
+      p.normalMaterial();
+      p.model(octahedron2);
+      p.rotate(r / 100.0, [1, 1, 0]);
+      p.model(octahedron2);
+      p.rotate(r / 100.0, [1, 1, 0]);
+      p.model(octahedron2);
+      p.rotate(r / 100.0, [1, 1, 0]);
+      p.model(octahedron2);
+      p.translate(0, 1, 10);
+      p.rotate(r / 100.0, [1, 1, 0]);
+      p.model(octahedron2);
+    }
+    x++;
+    r++;
+    
     console.log(props.scrollSize);
   };
 
@@ -68,4 +85,3 @@ const Game: React.FC<ComponentProps> = (props: ComponentProps) => {
   );
 };
 
-export default Game;

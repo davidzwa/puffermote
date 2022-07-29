@@ -20,7 +20,7 @@ function App() {
   return (
     <div className="App">
       <GameBg />
-      <h1 style={{ textAlign: "center" }}>Puffermote v1.9.63</h1>
+      <h1 style={{ textAlign: "center" }}>Meditative Aquarium</h1>
       <br />
       <Game scrollSize={scrollPosition} />
     </div>
