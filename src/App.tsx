@@ -1,32 +1,19 @@
 import "./App.css";
 import Game from "./components/Game";
 import {GameBg} from "./components/GameBg";
-import {useEffect, useState} from "react";
-import {useMIDI} from "@react-midi/hooks";
+import {useState} from "react";
 import MIDIManager from "./components/MIDIManager";
 
 function App() {
-
-    const [scrollPosition, setSrollPosition] = useState(0);
-    const handleScroll = () => {
-        const position = window.pageYOffset;
-        setSrollPosition(position);
-    };
-
-    useEffect(() => {
-        window.addEventListener("scroll", handleScroll, {passive: true});
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, []);
+    const [data, setData] = useState({posX: 0, posY: 0});
 
     return (
         <div className="App">
             <GameBg/>
-            <MIDIManager/>
+            <MIDIManager setData={setData}/>
             <h1 style={{textAlign: "center"}}>Meditative Aquarium</h1>
             <br/>
-            <Game scrollSize={scrollPosition}/>
+            <Game posX={data.posX} posY={data.posY} />
         </div>
     );
 }
