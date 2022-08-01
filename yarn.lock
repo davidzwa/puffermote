@@ -274,6 +274,13 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@react-midi/hooks@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@react-midi/hooks/-/hooks-1.0.2.tgz#fea2d9e88b352f0e224485ab47a2eb4016c51dc4"
+  integrity sha512-ZZpMnxnmzze0EEslr7Pyy+n+ovzjqo25OorGTVEsufwkAfRjy4VwlYzttG/TGmT0GaG73qw+5OJ1SF6WWhhplg==
+  dependencies:
+    uniqid "^5.0.3"
+
 "@types/p5@^1.4.2":
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/@types/p5/-/p5-1.4.2.tgz#aee3142741254a38ab9a95038d5b777901a2be1e"
@@ -712,6 +719,11 @@ typescript@^4.6.4:
   version "4.7.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.4.tgz#1a88596d1cf47d59507a1bcdfb5b9dfe4d488235"
   integrity sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==
+
+uniqid@^5.0.3:
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/uniqid/-/uniqid-5.4.0.tgz#4e17bfcab66dfe33563411ae0c801f46ef964e66"
+  integrity sha512-38JRbJ4Fj94VmnC7G/J/5n5SC7Ab46OM5iNtSstB/ko3l1b5g7ALt4qzHFgGciFkyiRNtDXtLNb+VsxtMSE77A==
 
 update-browserslist-db@^1.0.5:
   version "1.0.5"

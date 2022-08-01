@@ -1,30 +1,21 @@
 import "./App.css";
 import Game from "./components/Game";
-import { GameBg } from "./components/GameBg";
-import { useEffect, useState } from "react";
+import {GameBg} from "./components/GameBg";
+import {useState} from "react";
+import MIDIManager from "./components/MIDIManager";
 
 function App() {
-  const [scrollPosition, setSrollPosition] = useState(0);
-  const handleScroll = () => {
-    const position = window.pageYOffset;
-    setSrollPosition(position);
-  };
+    const [data, setData] = useState({posX: 0, posY: 0});
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  return (
-    <div className="App">
-      <GameBg />
-      <h1 style={{ textAlign: "center" }}>Meditative Aquarium</h1>
-      <br />
-      <Game scrollSize={scrollPosition} />
-    </div>
-  );
+    return (
+        <div className="App">
+            <GameBg/>
+            <MIDIManager setData={setData}/>
+            <h1 style={{textAlign: "center"}}>Meditative Aquarium</h1>
+            <br/>
+            <Game data={data} />
+        </div>
+    );
 }
 
 export default App;

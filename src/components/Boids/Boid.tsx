@@ -20,7 +20,7 @@ class Boid {
     this.p = p;
     this.acceleration = p.createVector(0, 0);
     this.velocity = p.createVector(p.random(-1, 1), p.random(-1, 1));
-    this.position = p.createVector(x, y);
+    this.position = p.createVector(x-500, y-300);
     this.r = 3.0;
     this.maxSpeed = 3; // Maximum speed
     this.maxForce = 0.05; // Maximum steering force
