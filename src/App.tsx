@@ -13,7 +13,7 @@ function App() {
             <MIDIManager setData={setData}/>
             <h1 style={{textAlign: "center"}}>Meditative Aquarium</h1>
             <br/>
-            <Game posX={data.posX} posY={data.posY} />
+            <Game data={data} />
         </div>
     );
 }

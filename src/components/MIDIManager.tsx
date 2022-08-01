@@ -5,10 +5,12 @@ import {useMIDI, useMIDIControls, useMIDIMessage} from "@react-midi/hooks";
 const MIDIControlLog: FC = ({input, setData}) => {
     const controls = [1];
 
-    let prevX = 0;
-    let prevY = 0;
+    let prevX: number = 0;
+    let prevY: number = 0;
+    let grab: number = 0;
 
     const channelMap = {
+        14: "grab",
         15: "y-pos",
         16: "x-pos",
         17: "speed",
@@ -23,17 +25,27 @@ const MIDIControlLog: FC = ({input, setData}) => {
     if (message?.data) {
         const [device, id, value] = Array.from(message?.data);
 
-        // @ts-ignore
-        // console.log(channelMap[id], value);
-        if (id === 15) {
+        if (id === 14) {
+            grab = value;
+        }
+        if (id === 15 && value !== 0) {
             prevY = value;
-            console.log("set data y", prevY);
             setData({posY: prevY});
-        } else if (id === 16) {
+
+        } else if (id === 16 && value !== 0) {
             prevX = value;
-            console.log("set data x", prevX);
             setData({posX: prevX});
         }
+
+        const detail = {
+            posX: prevX,
+            posY: prevY,
+            grab
+        };
+        window.dispatchEvent(new CustomEvent<{ posX: number, posY: number, grab: number }>('pos-update', {
+            detail
+        }));
+
     }
     return (<div>
         {controls.map((control) => (<div key={control}>
@@ -44,7 +56,7 @@ const MIDIControlLog: FC = ({input, setData}) => {
 
 };
 // @ts-ignore
-const MIDIManager: FC<{setData: any}> = (props) => {
+const MIDIManager: FC<{ setData: any }> = (props) => {
     const {inputs, outputs, hasMIDI} = useMIDI();
 
     if (inputs.length < 1) return <div>No MIDI Inputs</div>;
